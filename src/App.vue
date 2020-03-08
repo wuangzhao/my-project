@@ -20,5 +20,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  height: calc(100vh);
+  width: calc(100vw);
+  position: relative;
 }
 </style>

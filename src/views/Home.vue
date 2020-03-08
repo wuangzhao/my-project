@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <el-tabs v-model="activeTab">
+    <el-tabs v-model="activeTab" tabPosition="bottom" type="border-card" :stretch="true">
       <el-tab-pane label="课程信息" name="classInfo">
         <v-class-info></v-class-info>
       </el-tab-pane>
@@ -23,7 +23,7 @@ export default {
   components: {VUserInfo, VClassTable, VClassInfo},
   data() {
       return {
-          activeTab: "roadStatus"
+          activeTab: "classInfo"
       }
   },
   methods: {
@@ -32,4 +32,32 @@ export default {
 </script>
 
 <style>
+  .el-tabs--border-card {
+    position: absolute;
+    bottom: 0px;
+    left: -4px;
+  }
+  .el-tabs--border-card>.el-tabs__content {
+    padding: 0px;
+  }
+  .home {
+    position: absolute;
+    height: calc(99vh);
+    width: calc(99vw)
+  }
+
+  .classInfo{
+    height: calc(95vh);
+    width: calc(98vw)
+  }
+
+  .userInfo{
+    height: calc(95vh);
+    width: calc(98vw)
+  }
+
+  .classTable{
+    height: calc(95vh);
+    width: calc(98vw)
+  }
 </style>
