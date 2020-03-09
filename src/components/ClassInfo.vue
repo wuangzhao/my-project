@@ -6,9 +6,9 @@
         :src="url"></el-image>
     </el-aside>
     <el-main>
-      <span>课程名称: {{this.currentClassInfo.className}}</span><br/>
-      <span>上课老师: {{this.currentClassInfo.classTeacher}}</span><br/>
-      <span>上课时间: {{this.currentClassInfo.classTime}}</span><br/>
+      <span>课程名称: {{this.classInfo.className}}</span><br/>
+      <span>上课老师: {{this.classInfo.teacher}}</span><br/>
+      <span>上课时间: {{this.classInfo.classTime}}</span><br/>
     </el-main>
   </el-container>
 </template>
@@ -19,6 +19,13 @@
     props: {
       classInfo: {
         type: Object,
+      }
+    },
+    watch: {
+      classInfo: {
+        handler() {
+          this.currentClassInfo = this.classInfo;
+        }
       }
     },
     data() {

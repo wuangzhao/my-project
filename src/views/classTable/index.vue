@@ -31,6 +31,11 @@
 
   export default {
     name: "VClassTable",
+    computed: {
+      userInfo() {
+        return this.$store.state.userInfo;
+      }
+    },
     watch: {
       value(newValue, oldValue) {
         let tempAddDate = new Date(oldValue);
@@ -42,10 +47,20 @@
         if (tempAddDate.getTime() === newValue.getTime() || tempMinusDate.getTime() === newValue.getTime()) {
           return
         }
-        console.log(tempAddDate.getTime());
-        console.log(tempMinusDate.getTime());
-        console.log(oldValue.getTime());
-        console.log(newValue.getTime());
+        // console.log(tempAddDate.getTime());
+        // console.log(tempMinusDate.getTime());
+        // console.log(oldValue.getTime());
+        // console.log(newValue.getTime());
+        let param = {
+          userId: this.userInfo.userId,
+          date: newValue.getTime()
+        };
+        this.$axios
+          .post(api.classDateQuery, param)
+          .then(e => {
+            console.log(e);
+            this.tableData = e.data.data;
+          });
         this.centerDialogVisible = true;
       }
     },

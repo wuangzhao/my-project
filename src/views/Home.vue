@@ -21,6 +21,12 @@ import VUserInfo from "./userInfo";
 export default {
   name: "home",
   components: {VUserInfo, VClassTable, VClassInfo},
+  beforeCreate() {
+    let userInfo = {
+      userId: '100000',
+    };
+    this.$store.commit('setUserInfo', userInfo);
+  },
   data() {
       return {
           activeTab: "classInfo"
