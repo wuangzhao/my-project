@@ -1,6 +1,14 @@
 <template>
   <div class="classTable" v-loading="fullscreenLoading">
     <el-calendar v-model="value">
+      <template
+        slot="dateCell"
+        slot-scope="{date, data}">
+        <p :class="data.isSelected ? 'is-selected' : ''">
+          {{ data.day.split('-').slice(2).join('-') }} {{ data.isSelected ? '✔️' : ''}}
+        </p>
+        <p v-on="test(data.day)" v-show="map.get(data.day) === true" >有课</p>
+      </template>
     </el-calendar>
     <el-dialog
       title="当日课程信息"
@@ -62,10 +70,11 @@
             this.tableData = e.data.data;
           });
         this.centerDialogVisible = true;
-      }
+      },
     },
     data() {
       return {
+        map: new Map(),
         tableData: [
           {
             className: 'className',
@@ -90,8 +99,27 @@
     },
     created() {
       console.log("classTable:" + api.demo);
+      console.log(this.map);
+
     },
-    methods: {}
+    methods: {
+      addToMap(k, v) {
+        this.map = new Map(this.map.set(k, v));
+      },
+      test(date) {
+        let param = {
+          userId: this.userInfo.userId,
+          date: date
+        };
+        this.$axios
+          .post(api.classDateQuery, param)
+          .then(e => {
+            if (e.data.total > 0) {
+              this.addToMap(date, true)
+            }
+          });
+      }
+    }
   };
 </script>
 <style scoped>
