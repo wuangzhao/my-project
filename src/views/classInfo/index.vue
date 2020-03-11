@@ -1,8 +1,9 @@
 <template>
   <div class="classInfo" v-loading="fullscreenLoading">
     <!--    <span>课程信息</span>-->
-    <cp-class-info v-for="(item, index) in classInfos" :classInfo="item" :key="index"></cp-class-info>
-
+    <div style="position: absolute; top: 30px;">
+      <cp-class-info v-for="(item, index) in classInfos" :classInfo="item" :key="index"></cp-class-info>
+    </div>
   </div>
 </template>
 

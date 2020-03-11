@@ -17,7 +17,7 @@
       center>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column
-          prop="time"
+          prop="date"
           label="时间">
         </el-table-column>
         <el-table-column
@@ -55,10 +55,6 @@
         if (tempAddDate.getTime() === newValue.getTime() || tempMinusDate.getTime() === newValue.getTime()) {
           return
         }
-        // console.log(tempAddDate.getTime());
-        // console.log(tempMinusDate.getTime());
-        // console.log(oldValue.getTime());
-        // console.log(newValue.getTime());
         let param = {
           userId: this.userInfo.userId,
           date: newValue.getTime()
