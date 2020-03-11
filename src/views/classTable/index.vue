@@ -75,6 +75,7 @@
     data() {
       return {
         map: new Map(),
+        updateMap: new Map(),
         tableData: [
           {
             className: 'className',
@@ -115,6 +116,10 @@
           .post(api.classDateQuery, param)
           .then(e => {
             if (e.data.total > 0) {
+              if (this.updateMap.get(date) ===  'update') {
+                return
+              }
+              this.updateMap.set(date, 'update');
               this.addToMap(date, true)
             }
           });
