@@ -112,7 +112,7 @@
     name: "CpManageUserTable",
     data() {
       return {
-        showCClassInfo: true,
+        showCClassInfo: false,
         currentPage: 1,
         tableTotal: 100,
         dialogVisible: false,
