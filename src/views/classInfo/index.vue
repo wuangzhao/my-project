@@ -26,7 +26,7 @@
       };
     },
     created() {
-      console.log("classInfo:" + api.demo);
+      console.log('===========' + JSON.stringify(this.userInfo))
       this.$axios
         .post(api.userClassQuery, this.userInfo)
         .then(e => {
