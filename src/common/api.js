@@ -9,10 +9,8 @@ export default {
   classDatesQuery: '/web/date/classDateQuery.json',
   addDate: '/web/date/addDate.json',
   deleteDate: '/web/date/deleteDate.json',
-
-
-
-
-
-
+  addUserInfo: '/web/user/admin/addUserInfo.json',
+  deleteUserInfo: '/web/user/admin/deleteUserInfo.json',
+  editUserInfo: '/web/user/admin/editUserInfo.json',
+  userInfoQuery: '/web/user/admin/userInfo.json'
 }

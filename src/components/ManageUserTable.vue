@@ -79,12 +79,12 @@
       :visible.sync="showCClassInfo"
       width="50%">
       <div>
-        <el-table>
-          <el-table-column prop="userName" label="上课时间" width="160">
+        <el-table :data="clickData">
+          <el-table-column prop="date" label="上课时间" width="160">
           </el-table-column>
-          <el-table-column prop="userName" label="教师名称" width="160">
+          <el-table-column prop="teacher" label="教师名称" width="160">
           </el-table-column>
-          <el-table-column prop="userName" label="课程名" width="160">
+          <el-table-column prop="className" label="课程名" width="160">
           </el-table-column>
           <el-table-column
             fixed="right"
@@ -98,7 +98,6 @@
       </div>
 
 
-
       <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
   </span>
@@ -108,6 +107,8 @@
 </template>
 
 <script>
+  import api from "../common/api";
+
   export default {
     name: "CpManageUserTable",
     data() {
@@ -133,13 +134,36 @@
         ]
       }
     },
+    created() {
+      this.queryData('')
+    },
     methods: {
+      queryData(name) {
+        let param = {
+          name: name
+        };
+        this.$axios
+          .post(api.userInfoQuery, param)
+          .then(e => {
+            console.log('===============' + e);
+            this.tableData = e.data.data.result;
+          });
+      },
       handleClickClass(e) {
         this.showCClassInfo = true;
+        console.log(e);
+        let param = {
+          userId: e.userId
+        };
+        this.$axios
+          .post(api.userClassQuery, param)
+          .then(e => {
+            console.log('===============' + e);
+            this.clickData = e.data.data;
+          });
       },
       handleClick(e) {
         this.dialogVisible = true;
-        this.clickData = e;
         console.log(e)
 
       },
