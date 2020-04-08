@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 const Home = () => import('../views/Home.vue')
 const ManageHome = () => import('../views/management/Home.vue')
+const UserLogin = ()=>import('../views/userLogin/index')
 
 Vue.use(Router)
 
@@ -12,6 +13,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/userLogin',
+      name: 'userLogin',
+      component: UserLogin
     },
     {
         path: '/manage',
